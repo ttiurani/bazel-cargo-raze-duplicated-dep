@@ -7,3 +7,18 @@ $ bazel test //... --sandbox_debug --verbose_failures
 ERROR: [clip]/external/raze__cpufeatures__0_2_1/BUILD.bazel:34:13: Label '@raze__libc__0_2_107//:libc' is duplicated in the 'deps' attribute of rule 'cpufeatures'
 ERROR: [clip]/external/raze__sha_1__0_9_8/BUILD.bazel:47:13: Target '@raze__cpufeatures__0_2_1//:cpufeatures' contains an error and its package is in error and referenced by '@raze__sha_1__0_9_8//:sha1'
 ```
+
+## Solution: Adding Targets
+
+After adding these:
+
+```
+targets = [
+    "x86_64-apple-darwin",
+    "x86_64-pc-windows-msvc",
+    "x86_64-unknown-linux-gnu",
+    "aarch64-linux-android",
+    "wasm32-unknown-unknown",
+```
+
+the issue does go away.
